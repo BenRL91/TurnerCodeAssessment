@@ -1,43 +1,43 @@
 import React, { Component } from 'react';
-import * as API_UTILS from '../apiUtils.js';
-
-import Result from './Result.js'
+import PropTypes from 'prop-types';
 
 export default class ResultContainer extends Component {
-  constructor(...args){
-    super(...args);
 
-    this.state = {
-      results: [],
-      loading: true
-    }
+  static propTypes = {
+    results: PropTypes.array.isRequired,
+    searchQuery: PropTypes.string.isRequired
   }
 
-  fetchTitles = () => {
-    let titleResults = API_UTILS.getJSON('titles');
-    titleResults.then((result) => {
-      this.setState((prevState, props) => {
-        return {
-          results: result,
-          loading: false
-        }
-      })
-    })
+  //Filter our results based on the query we're given
+  filterResult(result){
+    const { searchQuery } = this.props;
+    /*TODO: Use regex for substr match*/
+
+    return result.TitleName.toLowerCase().includes(searchQuery.toLowerCase());
   }
 
+  //Display a single result's details
+  displayDetails(result){
+    console.log(result);
+  }
+
+  //Display the result's title on the page
   renderResult(result){
-    return <Result data={result}/>
-  }
-
-  componentWillMount(){
-    this.fetchTitles();
+    return (
+      <li key={result._id} onClick={ e => this.displayDetails(result)}>
+        { result.TitleName }
+      </li>)
   }
 
   render() {
-    const { results } = this.state;
+    const { results } = this.props
+
     return (
       <ul>
-        { results.length > 0 ? results.map(result => this.renderResult(result)) : null }
+        { results
+          .filter(result => this.filterResult(result))
+          .map(result => this.renderResult(result))
+        }
       </ul>
     );
   }
