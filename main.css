@@ -18,6 +18,28 @@
 
 .details {
   grid-area: detail;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto 1fr;
+  grid-template-areas:
+  "title title title"
+  "genre genre genre"
+  "awards others others"
+}
+
+.title{
+  grid-area: title;
+}
+
+.awards{
+  grid-area: awards
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .loader{
