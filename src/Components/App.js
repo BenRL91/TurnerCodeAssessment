@@ -3,7 +3,6 @@ import * as API_UTILS from "../apiUtils.js";
 
 import SearchBar from './SearchBar.js';
 import ResultContainer from './ResultContainer.js';
-import Result from './Result.js';
 
 export default class App extends Component {
   constructor(...args){
@@ -46,7 +45,9 @@ export default class App extends Component {
   render() {
     const { searchQuery, results, loading } = this.state;
     return (
-      <div>
+      loading
+      ? <div className="loader">Loading...</div> 
+      : <div>
        <SearchBar searchQuery={searchQuery} onChangeHandler={this.onChangeHandler}/>
        <ResultContainer results={results} searchQuery={searchQuery}/>
       </div>
