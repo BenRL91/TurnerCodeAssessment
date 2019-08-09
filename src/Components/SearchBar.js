@@ -10,6 +10,9 @@ export default class SearchBar extends Component {
   render() {
     const { searchQuery } = this.props
 
-    return ( <input type='text' defaultValue={this.props.searchQuery} onChange={ e => this.updateQuery(e.target.value)}/>);
+    return ( <input className="search"
+                    type='text'
+                    defaultValue={this.props.searchQuery}
+                    onChange={ e => this.updateQuery(e.target.value)}/>);
   }
 }

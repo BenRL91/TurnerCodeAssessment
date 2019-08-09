@@ -5,7 +5,8 @@ export default class ResultContainer extends Component {
 
   static propTypes = {
     results: PropTypes.array.isRequired,
-    searchQuery: PropTypes.string.isRequired
+    searchQuery: PropTypes.string.isRequired,
+    displayDetailHandler: PropTypes.func.isRequired
   }
 
   //Filter our results based on the query we're given
@@ -18,7 +19,7 @@ export default class ResultContainer extends Component {
 
   //Display a single result's details
   displayDetails(result){
-    console.log(result);
+    this.props.displayDetailHandler(result);
   }
 
   //Display the result's title on the page
@@ -33,7 +34,7 @@ export default class ResultContainer extends Component {
     const { results } = this.props
 
     return (
-      <ul>
+      <ul className='list'>
         { results
           .filter(result => this.filterResult(result))
           .map(result => this.renderResult(result))

@@ -3,6 +3,7 @@ import * as API_UTILS from "../apiUtils.js";
 
 import SearchBar from './SearchBar.js';
 import ResultContainer from './ResultContainer.js';
+import DetailPanel from './DetailPanel.js';
 
 export default class App extends Component {
   constructor(...args){
@@ -12,7 +13,8 @@ export default class App extends Component {
     this.state = {
       results: [],
       loading: true,
-      searchQuery: ""
+      searchQuery: "",
+      displayDetails: null
     }
   }
 
@@ -41,15 +43,39 @@ export default class App extends Component {
     })
   }
 
+  displayDetailHandler = (result) => {
+    this.setState((prevState, props) => {
+      return {
+        displayDetails: result
+      }
+    })
+  }
+
+  hideDetailHandler = () => {
+    this.setState((prevState, props) => {
+      return {
+        displayDetails: null
+      }
+    })
+  }
+
 
   render() {
-    const { searchQuery, results, loading } = this.state;
+    const { searchQuery, results, displayDetails, loading } = this.state;
     return (
       loading
-      ? <div className="loader">Loading...</div> 
-      : <div>
-       <SearchBar searchQuery={searchQuery} onChangeHandler={this.onChangeHandler}/>
-       <ResultContainer results={results} searchQuery={searchQuery}/>
+      ? <div className="loader">Loading...</div>
+      : <div className="app">
+       <SearchBar
+        searchQuery={searchQuery}
+        onChangeHandler={this.onChangeHandler}/>
+       <ResultContainer
+        results={results}
+        searchQuery={searchQuery}
+        displayDetailHandler={this.displayDetailHandler}/>
+       <DetailPanel
+        result={displayDetails}
+        hideDetailHandler={this.hideDetailHandler}/>
       </div>
     );
   }
