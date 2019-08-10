@@ -11,18 +11,13 @@ The various webpack options used have been explained in detailed as comments in 
 
 
 ### Usage
+Navigate to the repository then /api and run
 
+```
+node ./api.js
+```
 ```
 npm install
 npm start
 Open http://localhost:5000
 ```
-
-### Linting
-
-ESLint with React linting options have been enabled.
-
-```
-npm run lint
-```
-
