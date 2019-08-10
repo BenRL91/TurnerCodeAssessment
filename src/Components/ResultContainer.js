@@ -9,33 +9,34 @@ export default class ResultContainer extends Component {
     displayDetailHandler: PropTypes.func.isRequired
   }
 
-  //Filter our results based on the query we're given
+  // Filter our results based on the query we're given
   filterResult(result){
-    const { searchQuery } = this.props;
-    /*TODO: Use regex for substr match*/
+    const {searchQuery} = this.props;
+    /* TODO: Use regex for substr match */
 
     return result.TitleName.toLowerCase().includes(searchQuery.toLowerCase());
   }
 
-  //Display a single result's details
+  // Display a single result's details
   displayDetails(result){
     this.props.displayDetailHandler(result);
   }
 
-  //Display the result's title on the page
+  // Display the result's title on the page
   renderResult(result){
     return (
-      <li key={result._id} onClick={ e => this.displayDetails(result)}>
-        { result.TitleName }
+      <li className='result' key={result._id} onClick={e => this.displayDetails(result)}>
+        {result.TitleName}
       </li>)
   }
 
   render() {
-    const { results } = this.props
+    const {results} = this.props
 
     return (
       <ul className='list'>
-        { results
+      <h2>Results</h2>
+        {results
           .filter(result => this.filterResult(result))
           .map(result => this.renderResult(result))
         }

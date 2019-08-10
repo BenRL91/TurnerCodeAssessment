@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import * as API_UTILS from "../apiUtils.js";
+import * as API_UTILS from "../apiUtils";
 
-import SearchBar from './SearchBar.js';
-import ResultContainer from './ResultContainer.js';
-import DetailPanel from './DetailPanel.js';
+import SearchBar from './SearchBar';
+import ResultContainer from './ResultContainer';
+import DetailPanel from './DetailPanel';
 
 export default class App extends Component {
   constructor(...args){
     super(...args);
 
-    //Initialize our state
+    // Initialize our state
     this.state = {
       results: [],
       loading: true,
@@ -18,12 +18,12 @@ export default class App extends Component {
     }
   }
 
-  //Fetch our data
+  // Fetch our data
   componentWillMount(){
     this.fetchTitles();
   }
 
-  //Need to have data to search
+  // Need to have data to search
   fetchTitles = () => {
     let titleResults = API_UTILS.getJSON('titles');
     titleResults.then((result) => {
@@ -36,7 +36,7 @@ export default class App extends Component {
     })
   }
 
-  //Callback to obtain the new query state
+  // Callback to obtain the new query state
   onChangeHandler = (string) => {
     this.setState((prevState, props) => {
       return { searchQuery: string };

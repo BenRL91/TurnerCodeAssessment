@@ -1,3 +1,12 @@
+*{
+  font-family: arial;
+  font-size: 1em;
+}
+
+h6{
+  margin-top: 1em;
+}
+
 .app{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -14,6 +23,15 @@
 
 .list {
   grid-area: main;
+  margin-right: 15px;
+}
+
+.result{
+  padding: 5px;
+}
+
+.result:hover{
+  cursor: pointer;
 }
 
 .details {
@@ -30,10 +48,23 @@
 
 .title{
   grid-area: title;
+  font-size: 20px;
 }
 
 .awards{
-  grid-area: awards
+  grid-area: awards;
+  padding-left: 20px;
+}
+
+.cast{
+  padding-left: 20px;
+}
+
+.award {
+}
+
+.award-detail{
+  font-size: 10px;
 }
 
 .close {
@@ -44,4 +75,10 @@
 
 .loader{
   font-size: 10em;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

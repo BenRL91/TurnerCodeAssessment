@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as API_UTILS from "../apiUtils.js";
+import * as API_UTILS from "../apiUtils";
 
 export default class SearchBar extends Component {
   //Handle our query change and pass the result up to the app state
